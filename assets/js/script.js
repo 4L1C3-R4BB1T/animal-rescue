@@ -8,7 +8,7 @@ function start() {
     $("#background").append("<div id='score'></div>");
     $("#background").append("<div id='hearts'></div>");
 
-    var shot = document.getElementById("shot");
+    var shotSound = document.getElementById("shot");
     var meow = document.getElementById("meow");
     var bgMusic = document.getElementById("bgMusic");
     var rescue = document.getElementById("rescue");
@@ -30,16 +30,22 @@ function start() {
 
     /*--------------- variables ---------------*/
     var game = {};
+    
     var canShot = true;
     var gameover = true;
+    
     var birdVelocity = 5;
     var frogVelocity = 3;
     var catVelocity = 1;
+    var velocityShot = 5;
+    
     var score = 0;
     var rescues = 0;
     var losts = 0;
     var hearts = 5;
+    
     var KEY = { W: 87, S: 83, D: 68 }
+    
     var positionY = parseInt(Math.random() * 334);
 
     game.pressed = [];
@@ -89,7 +95,7 @@ function start() {
         }
         
         if (game.pressed[KEY.D]) {
-            // shot();	
+            shot();	
         }
     } 
 
@@ -128,6 +134,40 @@ function start() {
         if (positionX > 906) {       
             $("#cat").css("left", 0);            
         }
+    } 
+
+    /*--------------- shot ---------------*/
+    function shot() {
+        if (canShot) {
+            shotSound.play();
+
+            canShot = false;
+            
+            var top = parseInt($("#player").css("top"))
+            positionX = parseInt($("#player").css("left"))
+            
+            shotX = positionX + 70;
+            topShot = top + 42;
+            
+            $("#background").append("<div id='shot' class='animationShot'></div");
+            $("#shot").css("top", topShot);
+            $("#shot").css("left", shotX);
+            
+            var timeShot = window.setInterval(executeShot, 30);
+        } 
+     
+        function executeShot() {
+            positionX = parseInt($("#shot").css("left"));
+            
+            $("#shot").css("left", positionX + velocityShot); 
+    
+            if (positionX > 925) {               
+                window.clearInterval(timeShot);
+                timeShot = null;
+                $("#shot").remove();
+                canShot = true;        
+            }
+        } 
     } 
 
 }
