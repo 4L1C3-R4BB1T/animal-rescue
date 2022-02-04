@@ -248,6 +248,17 @@ function start() {
 
             score += 50;
         }
+
+        // check collision between player and cat
+        if (collision5.length > 0) { 
+			rescueSound.play();
+            
+            setTimeout(repositionCat, 3000);
+            
+            $("#cat").remove();
+
+            rescues++;
+        }
     } 
 
     /*--------------- collision bird ---------------*/
@@ -369,4 +380,15 @@ function start() {
             $("#background").append("<div id='frog' class='animationFrog'></div>");
         }    
     }	
+
+    /*--------------- reposition cat ---------------*/
+    function repositionCat() {
+        if (!gameover) {
+            cat = parseInt(Math.random()*4) + 1;
+
+            $("#background").append("<div id='cat' class='animationCat'></div>");	
+			$("#cat").css("background-image", `url(assets/img/cats/${cat}.png)`);
+			$(".animationCat").css("background-image", `url(assets/img/cats/${cat}.png)`);    
+        }
+    } 
 }
