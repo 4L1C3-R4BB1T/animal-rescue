@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link href="assets/css/styles.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/animation.css" rel="stylesheet" type="text/css">
+        <title>Resgate Animal</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="background">
+                <div id="start">
+                    <h1> 
+                        Resgate 
+                    </h1> 
+                    <p class="info">
+						Myyra é uma garota com um grande coração e que está sempre ajudando os 
+                        outros. Hoje não foi diferente. Os animais da floresta acordaram com um 
+                        grande mau humor. Ajude Myyra a tornar seus amigos animais felizes novamente 
+                        e a impedir os gatinhos de ficarem maus-humorados.
+						Utilize a tecla <strong>[W]</strong> para movimentar Myyra para cima, 
+                        a tecla <strong>[S]</strong> para movimentar Myyra para baixo e a tecla 
+                        <strong>[D]</strong> para utilizar o poder do coração.
+                    </p>
+                    <p class="start-game" onclick="start()"> 
+                        <strong>
+                            Clique aqui para iniciar!! 
+                        </strong>
+                    </p>
+                </div> 
+            </div> 
+        </div> 
+        <!-- SOUNDS -->
+        <audio src="assets/music/shot.mp3" preload="auto" id="shot"></audio>
+        <audio src="assets/music/meow.mp3" preload="auto" id="meow"></audio>	
+        <audio src="assets/music/bg_music.mp3" preload="auto" id="bgMusic"></audio>
+        <audio src="assets/music/rescue.mp3" preload="auto" id="rescue"></audio>
+        <audio src="assets/music/gameover.mp3" preload="auto" id="gameover"></audio>
+		<audio src="assets/music/collision.mp3" preload="auto" id="collision"></audio>
+        <audio src="assets/music/turn_happy.mp3" preload="auto" id="turnHappy"></audio>
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-collision.min.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script> 
+    </body>
+</html>

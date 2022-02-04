@@ -1,0 +1,181 @@
+@font-face {
+	font-family: junebug;
+	src: url(../font/JUNEBUG.TTF);
+}
+
+body {
+    background-color: rgb(255, 191, 255);
+}
+
+#container {
+    width: 950px;
+	height: auto;
+	position: relative;
+	margin: auto;
+	margin-top: 3em;
+}
+
+#background {
+    width: 950px;
+	height: 630px;
+    display: flex;
+	align-items: center;
+	justify-content: center; 
+	border: #FFF 3px solid;
+    background-image: url(../img/bg.png);
+}
+
+#start {
+    width: 500px;
+	height: 300px;
+	padding: 20px;
+    font-size: 17px;
+    text-align: justify;
+	font-family: sans-serif;
+    border: #A300E5 2px solid;
+	border-radius: 10px;
+	box-shadow: 0 0 15px black;
+    background-color: #FFF;
+}
+
+h1 {
+    font-family: junebug;
+	font-size: 40px;
+    text-align: center;
+	color: #A300E5;
+}
+
+#start .info {
+    margin-bottom: 30px;
+}
+
+#start .start-game {
+	font-family: junebug;
+	text-align: center;
+	color: #A300E5;
+    cursor: pointer;
+}
+
+#start .start-game:hover {
+	color: #4E076B;
+}
+
+#player {
+    height: 150px;
+	width: 91.4px;
+	top: 179px;
+    left: 100px;
+    position: absolute;
+    background-image: url(../img/player/myyra.png);
+}
+
+#bird {
+	height: 49px;
+    width: 73.7px;
+	top: 253px;
+    left: 875px;
+    position: absolute;
+	background-image:url(../img/bird/bird.png);
+}
+
+#frog {
+	height: 40px;
+    width: 46px;
+	top: 477px;
+	left: 905px;
+    position: absolute;
+	background-image: url(../img/frog/frog.png);
+}
+
+#cat {
+    height: 60px;
+    width: 70px;
+	top: 460px;    
+	left: 10px;
+    position: absolute;
+    background-image:url(../img/cats/1.png);
+}
+
+#shot {
+    height: 23px;
+    width: 25px;
+	position: absolute;
+	background-image: url(../img/heart-shot.png);
+}
+
+#collisionOne {
+	height: 49px;
+    width: 73.7px;
+	position: absolute;
+}
+
+#collisionTwo {
+	height: 37px;
+    width: 44px;
+	position: absolute;	
+}
+
+#collisionThree {
+	height: 60px;
+    width: 70px;
+	position: absolute;
+}
+
+#collisionFour {
+	height: 150px;
+    width: 91px;
+    position: absolute;
+}
+
+#score {
+	height: 50px;
+    width: 550px;
+	top: 590px;
+    left: 5px;
+    position: absolute;
+}
+
+#placar h2 {
+    font-family: junebug;
+	font-size: 18px;
+	margin-left: 15px;
+	color: #FFF;
+}
+
+#hearts {
+	height: 53px;
+    width: 202px;
+	top: 12px;	
+    left: 740px;
+	position: absolute;
+}
+
+#gameover {
+    height: 200px;
+    width: 350px;
+	padding: 10px;
+	text-align: center;	
+	border: #A300E5 2px solid;
+	border-radius: 10px;
+	box-shadow: 0 0 15px black;
+    background-color: #FFF;
+}
+
+#gameover p {
+    font-size: 17px;
+    font-family: sans-serif;
+}
+
+#gameover h3 {
+	font-size: 20px;
+    font-family: junebug;
+	color: #A300E5;
+}
+
+#restart h3 {
+    cursor: pointer;
+}
+
+#restart h3:hover {
+	color: #4E076B;
+}
