@@ -11,14 +11,14 @@ function start() {
     var shotSound = document.getElementById("shot");
     var meow = document.getElementById("meow");
     var bgMusic = document.getElementById("bgMusic");
-    var rescue = document.getElementById("rescue");
-    var gameover = document.getElementById("gameover");
+    var rescueSound = document.getElementById("rescue");
+    var gameoverMusic = document.getElementById("gameover");
     var collisionSound = document.getElementById("collision");
-    var turnHappy = document.getElementById("turnHappy");
+    var turnHappySound = document.getElementById("turnHappy");
 
     bgMusic.volume -= .7;
-    gameover.volume -= .7;
-    rescue.volume -= .7;
+    gameoverMusic.volume -= .7;
+    rescueSound.volume -= .7;
 
     /*--------------- loop music ---------------*/
     bgMusic.addEventListener("ended", () => { 
@@ -190,13 +190,12 @@ function start() {
 			playerX = parseInt($("#player").css("left"));
             playerY = parseInt($("#player").css("top"));
            
-			collisionOne(birdX, birdY);
-			collisionSix(playerX, playerY);
+            $("#bird").remove();
+
+			collisionBird(birdX, birdY);
+			collisionPlayer(playerX, playerY);
         
-            positionY = parseInt(Math.random() * 300)  + 30;
-           
-            $("#bird").css("left", 850);
-            $("#bird").css("top", positionY);
+            setTimeout(repositionBird, 1000);
         }    
 
         // check collision between player and frog
@@ -211,16 +210,10 @@ function start() {
 		   
             $("#frog").remove();
            
-            collisionTwo(frogX, frogY);  
-			collisionSix(playerX, playerY);
+            collisionFrog(frogX, frogY);  
+			collisionPlayer(playerX, playerY);
             
-            setTimeout(reposition, 3000);
-            
-            function reposition() {
-                if (!gameover) {    
-                    $("#background").append("<div id='frog' class='animationFrog'></div>");
-                }    
-            }		
+            setTimeout(repositionFrog, 3000);	
         }
 
         // check collision between shot and bird
@@ -230,27 +223,35 @@ function start() {
                 
 			$("#bird").remove();	
 				
-            collisionThree(birdX, birdY);
+            collisionBirdShot(birdX, birdY);
            
             $("#shot").css("left", 950);
                 
-			setTimeout(reposition, 1500);
+			setTimeout(repositionBird, 1500);
         
-			function reposition() {        
-				positionY = parseInt(Math.random() * 300) + 30;
-            
-				$("#background").append("<div id='bird' class='animationBird'></div>");
-				$("#bird").css("left", 850);
-				$("#bird").css("top", positionY);
-			} 
-
             score += 100;
             birdVelocity += 0.3;
         }
+
+        // check collision between shot and frog
+        if (collision4.length > 0) {
+            frogX = parseInt($("#frog").css("left"));
+            frogY = parseInt($("#frog").css("top"));
+            
+            $("#frog").remove();
+        
+            collisionFrogShot(frogX, frogY);
+            
+            $("#shot").css("left", 950);
+            
+            setTimeout(repositionFrog, 1500);
+
+            score += 50;
+        }
     } 
 
-    /*--------------- collisionOne ---------------*/
-    function collisionOne(birdX, birdY) {
+    /*--------------- collision bird ---------------*/
+    function collisionBird(birdX, birdY) {
         collisionSound.play();
 
         $("#background").append("<div id='collisionOne' class='animationBirdCollision'></div>");
@@ -268,8 +269,8 @@ function start() {
         } 
 	} 
     
-    /*--------------- collisionTwo ---------------*/
-    function collisionTwo(frogX, frogY) {
+    /*--------------- collision frog ---------------*/
+    function collisionFrog(frogX, frogY) {
         collisionSound.play();
 
         $("#background").append("<div id='collisionTwo' class='animationFrogCollision'></div>");
@@ -287,9 +288,9 @@ function start() {
         }        
     } 
 
-    /*--------------- collisionThree ---------------*/
-    function collisionThree(birdX, birdY) {
-        turnHappy.play();
+    /*--------------- collision bird shot ---------------*/
+    function collisionBirdShot(birdX, birdY) {
+        turnHappySound.play();
 
         $("#background").append("<div id='collisionOne' class='animationBirdHit'></div>");
         $("#collisionOne").css("background-image", "url(assets/img/bird/hit.png)");
@@ -306,14 +307,30 @@ function start() {
         } 
 	} 
 
-    /*--------------- collisionFour ---------------*/
+    /*--------------- collision frog shot ---------------*/
+    function collisionFrogShot(frogX, frogY) {
+        turnHappySound.play();
 
+        $("#background").append("<div id='collisionTwo' class='animationFrogHit'></div>");
+        $("#collisionTwo").css("background-image", "url(assets/img/frog/hit.png)");
+                
+        $("#collisionTwo").css("top", frogY);
+        $("#collisionTwo").css("left", frogX);
+                
+        var time = window.setInterval(removeCollision, 1300);
+        
+        function removeCollision() {        
+            $("#collisionTwo").remove();
+            window.clearInterval(time);
+            time = null;    
+        }        
+    } 
 
     /*--------------- collisionFive ---------------*/
 
 
-    /*--------------- collisionSix ---------------*/
-    function collisionSix(playerX, playerY) {
+    /*--------------- collision player ---------------*/
+    function collisionPlayer(playerX, playerY) {
 		$("#player").remove();
 
         $("#background").append("<div id='collisionFour' class='animationPlayerHit'></div>");
@@ -334,4 +351,22 @@ function start() {
             }
         }
     } 
+
+    /*--------------- reposition bird ---------------*/
+    function repositionBird() {        
+        if (!gameover) {  
+            positionY = parseInt(Math.random() * 300) + 30;
+        
+            $("#background").append("<div id='bird' class='animationBird'></div>");
+            $("#bird").css("left", 850);
+            $("#bird").css("top", positionY);
+        }
+    } 
+
+    /*--------------- reposition frog ---------------*/
+    function repositionFrog() {
+        if (!gameover) {    
+            $("#background").append("<div id='frog' class='animationFrog'></div>");
+        }    
+    }	
 }
