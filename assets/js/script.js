@@ -209,16 +209,44 @@ function start() {
 			playerX = parseInt($("#player").css("left"));
             playerY = parseInt($("#player").css("top"));
 		   
-            collisionTwo(frogX, frogY);
-                    
             $("#frog").remove();
-						
+           
+            collisionTwo(frogX, frogY);  
 			collisionSix(playerX, playerY);
-                
-            repositionFrog();
+            
+            setTimeout(reposition, 3000);
+            
+            function reposition() {
+                if (!gameover) {    
+                    $("#background").append("<div id='frog' class='animationFrog'></div>");
+                }    
+            }		
         }
 
-       
+        // check collision between shot and bird
+	    if (collision3.length > 0) {
+            birdX = parseInt($("#bird").css("left"));
+            birdY = parseInt($("#bird").css("top"));
+                
+			$("#bird").remove();	
+				
+            collisionThree(birdX, birdY);
+           
+            $("#shot").css("left", 950);
+                
+			setTimeout(reposition, 1500);
+        
+			function reposition() {        
+				positionY = parseInt(Math.random() * 300) + 30;
+            
+				$("#background").append("<div id='bird' class='animationBird'></div>");
+				$("#bird").css("left", 850);
+				$("#bird").css("top", positionY);
+			} 
+
+            score += 100;
+            birdVelocity += 0.3;
+        }
     } 
 
     /*--------------- collisionOne ---------------*/
@@ -231,12 +259,12 @@ function start() {
         $("#collisionOne").css("top", birdY);
         $("#collisionOne").css("left", birdX);
      
-        var timeCollision = window.setInterval(removeCollision, 2000);
+        var time = window.setInterval(removeCollision, 2000);
         
         function removeCollision() {        
             $("#collisionOne").remove();
-            window.clearInterval(timeCollision);
-            timeCollision = null;                
+            window.clearInterval(time);
+            time = null;                
         } 
 	} 
     
@@ -250,17 +278,33 @@ function start() {
         $("#collisionTwo").css("top", frogY);
         $("#collisionTwo").css("left", frogX);
 
-        var timeCollision = window.setInterval(removeCollision, 2000);
+        var time = window.setInterval(removeCollision, 2000);
         
         function removeCollision() {        
             $("#collisionTwo").remove();
-            window.clearInterval(timeCollision);
-            timeCollision = null;    
+            window.clearInterval(time);
+            time = null;    
         }        
     } 
 
     /*--------------- collisionThree ---------------*/
+    function collisionThree(birdX, birdY) {
+        turnHappy.play();
 
+        $("#background").append("<div id='collisionOne' class='animationBirdHit'></div>");
+        $("#collisionOne").css("background-image", "url(assets/img/bird/hit.png)");
+      
+        $("#collisionOne").css("top", birdY);
+        $("#collisionOne").css("left", birdX);
+        
+        var time = window.setInterval(removeCollision, 1500);
+        
+        function removeCollision() {        
+            $("#collisionOne").remove();
+            window.clearInterval(time);
+            time = null;                
+        } 
+	} 
 
     /*--------------- collisionFour ---------------*/
 
@@ -276,12 +320,12 @@ function start() {
         $("#collisionFour").css("top", playerY);
         $("#collisionFour").css("left", playerX);
         
-        var timeCollision = window.setInterval(removeCollision, 2000);
+        var time = window.setInterval(removeCollision, 2000);
         
         function removeCollision() {
             $("#collisionFour").remove();
-            window.clearInterval(timeCollision);
-            timeCollision = null;
+            window.clearInterval(time);
+            time = null;
 			
             if (hearts > 0) {
                 $("#background").append("<div id='player' class='animationPlayer'></div>");
@@ -290,19 +334,4 @@ function start() {
             }
         }
     } 
-
-    /*--------------- reposition frog ---------------*/
-    function repositionFrog() {
-        var time = window.setInterval(reposition, 3000);
-            
-        function reposition() {
-            window.clearInterval(time);
-            time = null;
-                
-            if (!gameover) {    
-                $("#background").append("<div id='frog' class='animationFrog'></div>");
-            }    
-        }			
-    }	
-    
 }

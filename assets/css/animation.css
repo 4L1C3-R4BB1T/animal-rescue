@@ -30,7 +30,7 @@
 
 .animationBirdHit {
 	background-image: url(../img/bird/hit.png);
-	animation: birdHappy 1.5s steps(38) infinite;
+	animation: birdHit 1.5s steps(38) infinite;
 }
 
 @keyframes birdHit {
