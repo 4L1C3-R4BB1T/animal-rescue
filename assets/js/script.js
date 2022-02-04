@@ -70,6 +70,7 @@ function start() {
         moveCat();
         checkCollision();
         showScore();
+        showHearts();
     } 
 
     /*--------------- move background ---------------*/
@@ -425,6 +426,14 @@ function start() {
 
     /*--------------- score ---------------*/
     function showScore() {
-        $("#score").html("<h2> Pontos: " + score + " | Salvos: " + rescues + " | Perdidos: " + losts + "</h2>");
+        $("#score").html(`<h2> Pontos: ${score} | Salvos: ${rescues} | Perdidos: ${losts}</h2>`);
+    } 
+
+    /*--------------- hearts ---------------*/
+    function showHearts() {
+		$("#hearts").css("background-image", `url(assets/img/hearts/${hearts}.png)`);
+        if (hearts == 0) { 
+            // gameOver();
+        }
     } 
 }
