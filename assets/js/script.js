@@ -69,6 +69,7 @@ function start() {
         moveFrog();
         moveCat();
         checkCollision();
+        showScore();
     } 
 
     /*--------------- move background ---------------*/
@@ -382,13 +383,15 @@ function start() {
             $("#collisionFour").remove();
             window.clearInterval(time);
             time = null;
-			
+        }
+
+        setTimeout(() => {
             if (hearts > 0) {
                 $("#background").append("<div id='player' class='animationPlayer'></div>");
                 $("#player").css("top", playerY);
                 $("#player").css("left", playerX);
             }
-        }
+        }, 2000);
     } 
 
     /*--------------- reposition bird ---------------*/
@@ -418,5 +421,10 @@ function start() {
 			$("#cat").css("background-image", `url(assets/img/cats/${cat}.png)`);
 			$(".animationCat").css("background-image", `url(assets/img/cats/${cat}.png)`);    
         }
+    } 
+
+    /*--------------- score ---------------*/
+    function showScore() {
+        $("#score").html("<h2> Pontos: " + score + " | Salvos: " + rescues + " | Perdidos: " + losts + "</h2>");
     } 
 }
