@@ -13,7 +13,7 @@ function start() {
     var bgMusic = document.getElementById("bgMusic");
     var rescue = document.getElementById("rescue");
     var gameover = document.getElementById("gameover");
-    var collision = document.getElementById("collision");
+    var collisionSound = document.getElementById("collision");
     var turnHappy = document.getElementById("turnHappy");
 
     bgMusic.volume -= .7;
@@ -68,6 +68,7 @@ function start() {
         moveBird();
         moveFrog();
         moveCat();
+        checkCollision();
     } 
 
     /*--------------- move background ---------------*/
@@ -149,7 +150,7 @@ function start() {
             shotX = positionX + 70;
             topShot = top + 42;
             
-            $("#background").append("<div id='shot' class='animationShot'></div");
+            $("#background").append("<div id='shot' class='animationShot'></div>");
             $("#shot").css("top", topShot);
             $("#shot").css("left", shotX);
             
@@ -170,4 +171,88 @@ function start() {
         } 
     } 
 
+    /*--------------- collision ---------------*/
+    function checkCollision() {
+        var collision1 = ($("#player").collision($("#bird")));
+        var collision2 = ($("#player").collision($("#frog")));
+        var collision3 = ($("#shot").collision($("#bird")));
+        var collision4 = ($("#shot").collision($("#frog")));
+        var collision5 = ($("#player").collision($("#cat")));
+        var collision6 = ($("#frog").collision($("#cat")));
+            
+        if (collision1.length > 0) {
+			hearts--;
+			
+            birdX = parseInt($("#bird").css("left"));
+            birdY = parseInt($("#bird").css("top"));
+			
+			playerX = parseInt($("#player").css("left"));
+            playerY = parseInt($("#player").css("top"));
+            
+			if (hearts > 0) {
+				collisionOne(birdX, birdY);
+				collisionSix(playerX, playerY);
+			}
+        
+            positionY = parseInt(Math.random() * 300)  + 30;
+           
+            $("#bird").css("left", 850);
+            $("#bird").css("top", positionY);
+        }    
+
+       
+    } 
+
+    /*--------------- collisionOne ---------------*/
+    function collisionOne(birdX, birdY) {
+        collisionSound.play();
+
+        $("#background").append("<div id='collisionOne' class='animationBirdCollision'></div>");
+        $("#collisionOne").css("background-image", "url(assets/img/bird/collision.png)");
+      
+        $("#collisionOne").css("top", birdY);
+        $("#collisionOne").css("left", birdX);
+     
+        var timeCollision = window.setInterval(removeCollision, 2000);
+        
+        function removeCollision() {        
+            $("#collisionOne").remove();
+            window.clearInterval(timeCollision);
+            timeCollision = null;                
+        } 
+	} 
+    
+    /*--------------- collisionTwo ---------------*/
+
+
+    /*--------------- collisionThree ---------------*/
+
+
+    /*--------------- collisionFour ---------------*/
+
+
+    /*--------------- collisionFive ---------------*/
+
+
+    /*--------------- collisionSix ---------------*/
+    function collisionSix(playerX, playerY) {
+		$("#player").remove();
+
+        $("#background").append("<div id='collisionFour' class='animationPlayerHit'></div>");
+        $("#collisionFour").css("top", playerY);
+        $("#collisionFour").css("left", playerX);
+        
+        var timeCollision = window.setInterval(removeCollision, 2000);
+        
+        function removeCollision() {
+            $("#collisionFour").remove();
+            window.clearInterval(timeCollision);
+            timeCollision = null;
+			
+            $("#background").append("<div id='player' class='animationPlayer'></div>");
+			$("#player").css("top", playerY);
+			$("#player").css("left", playerX);
+        }
+    } 
+    
 }
