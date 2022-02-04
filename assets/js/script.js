@@ -253,11 +253,25 @@ function start() {
         if (collision5.length > 0) { 
 			rescueSound.play();
             
-            setTimeout(repositionCat, 3000);
-            
             $("#cat").remove();
 
+            setTimeout(repositionCat, 3000);
+            
             rescues++;
+        }
+
+        //  check collision between frog and cat
+        if (collision6.length > 0) {     
+            catX = parseInt($("#cat").css("left"));
+            catY = parseInt($("#cat").css("top"));
+            
+            collisionCat(catX, catY);
+            
+            $("#cat").remove();
+                    
+            setTimeout(repositionCat, 3000);
+            
+            losts++;
         }
     } 
 
@@ -337,8 +351,22 @@ function start() {
         }        
     } 
 
-    /*--------------- collisionFive ---------------*/
+    /*--------------- collision cat ---------------*/
+    function collisionCat(catX, catY) {
+        meow.play();
 
+        $("#background").append("<div id='collisionThree' class='animationCatHit'></div>");
+        $("#collisionThree").css("top", catY);
+        $("#collisionThree").css("left", catX);
+        
+        var time = window.setInterval(removeCollision, 2000);
+        
+        function removeCollision() {
+            $("#collisionThree").remove();
+            window.clearInterval(time);
+            time = null;
+        }
+    } 
 
     /*--------------- collision player ---------------*/
     function collisionPlayer(playerX, playerY) {
