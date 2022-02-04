@@ -1,0 +1,109 @@
+.animationPlayer {
+    background-image: url(../img/player/myyra.png);
+	animation: player 2.5s steps(25) infinite;
+}
+
+@keyframes player {
+	from { background-position: 0px; }
+	to { background-position: -2285px; }
+}
+
+.animationPlayerHit {
+	background-image: url(../img/player/hit.png);
+	animation: playerHit .5s steps(2) infinite;
+}
+
+@keyframes playerHit {
+	from { background-position:0px; }
+	to { background-position:-182px; }
+}
+
+.animationBird {
+    background-image: url(../img/bird/bird.png);
+    animation: bird .8s steps(18) infinite;
+}
+
+@keyframes bird {
+	from { background-position: 0px; }
+	to { background-position: -1327px; }
+}
+
+.animationBirdHit {
+	background-image: url(../img/bird/hit.png);
+	animation: birdHappy 1.5s steps(38) infinite;
+}
+
+@keyframes birdHit {
+	from { background-position: 0px; }
+	to { background-position: -2802px; }
+}
+
+.animationBirdCollision {
+	background-image: url(../img/bird/collision.png);
+	animation: birdCollision .5s steps(2) infinite;
+}
+
+@keyframes birdCollision {
+	from { background-position: 0px; }
+	to { background-position: -147px; }
+}
+
+.animationCat {
+    background-image: url(../img/cats/1.png);
+	animation: cat .5s steps(4) infinite;
+}
+
+@keyframes cat {
+	from { background-position:0px; }
+	to { background-position:-280px; }
+}
+
+.animationCatHit {
+    background-image: url(../img/cats/hit.png);
+	animation: catHit .5s steps(2) infinite;
+}
+
+@keyframes catHit {
+	from { background-position: 0px; }
+	to { background-position: -140px; }
+}
+
+.animationShot {
+    background-image: url(../img/heart-shot.png);
+	animation: shot .5s steps(9) infinite;
+}
+
+@keyframes shot {
+	from { background-position: 0px; }
+	to { background-position: -225px; }
+}
+
+.animationFrog {
+	background-image: url(../img/frog/frog.png);
+	animation: frog 1s steps(7) infinite;
+}
+
+@keyframes frog {
+	from { background-position: 0px; }
+	to { background-position: -322px; }
+}
+
+.animationFrogHit {
+	background-image: url(../img/frog/hit.png);
+	animation: frogHit 1.3s steps(14) infinite;
+}
+
+@keyframes frogHit {
+	from { background-position: 0px; }
+	to { background-position: -616px; }
+}
+
+.animationFrogCollision {
+	background-image: url(../img/frog/collision.png);
+	animation: frogCollision .5s steps(2) infinite;
+}
+
+@keyframes frogCollision {
+	from { background-position: 0px; }
+	to { background-position: -88px; }
+}
