@@ -32,7 +32,7 @@ function start() {
     var game = {};
     
     var canShot = true;
-    var gameover = true;
+    var gameover = false;
     
     var birdVelocity = 5;
     var frogVelocity = 3;
@@ -180,6 +180,7 @@ function start() {
         var collision5 = ($("#player").collision($("#cat")));
         var collision6 = ($("#frog").collision($("#cat")));
             
+        // check collision between player and bird
         if (collision1.length > 0) {
 			hearts--;
 			
@@ -188,17 +189,34 @@ function start() {
 			
 			playerX = parseInt($("#player").css("left"));
             playerY = parseInt($("#player").css("top"));
-            
-			if (hearts > 0) {
-				collisionOne(birdX, birdY);
-				collisionSix(playerX, playerY);
-			}
+           
+			collisionOne(birdX, birdY);
+			collisionSix(playerX, playerY);
         
             positionY = parseInt(Math.random() * 300)  + 30;
            
             $("#bird").css("left", 850);
             $("#bird").css("top", positionY);
         }    
+
+        // check collision between player and frog
+        if (collision2.length > 0) {
+			hearts--;
+			
+            frogX = parseInt($("#frog").css("left"));
+            frogY = parseInt($("#frog").css("top"));
+           
+			playerX = parseInt($("#player").css("left"));
+            playerY = parseInt($("#player").css("top"));
+		   
+            collisionTwo(frogX, frogY);
+                    
+            $("#frog").remove();
+						
+			collisionSix(playerX, playerY);
+                
+            repositionFrog();
+        }
 
        
     } 
@@ -223,7 +241,23 @@ function start() {
 	} 
     
     /*--------------- collisionTwo ---------------*/
+    function collisionTwo(frogX, frogY) {
+        collisionSound.play();
 
+        $("#background").append("<div id='collisionTwo' class='animationFrogCollision'></div>");
+        $("#collisionTwo").css("background-image", "url(assets/img/frog/collision.png)");
+        
+        $("#collisionTwo").css("top", frogY);
+        $("#collisionTwo").css("left", frogX);
+
+        var timeCollision = window.setInterval(removeCollision, 2000);
+        
+        function removeCollision() {        
+            $("#collisionTwo").remove();
+            window.clearInterval(timeCollision);
+            timeCollision = null;    
+        }        
+    } 
 
     /*--------------- collisionThree ---------------*/
 
@@ -249,10 +283,26 @@ function start() {
             window.clearInterval(timeCollision);
             timeCollision = null;
 			
-            $("#background").append("<div id='player' class='animationPlayer'></div>");
-			$("#player").css("top", playerY);
-			$("#player").css("left", playerX);
+            if (hearts > 0) {
+                $("#background").append("<div id='player' class='animationPlayer'></div>");
+                $("#player").css("top", playerY);
+                $("#player").css("left", playerX);
+            }
         }
     } 
+
+    /*--------------- reposition frog ---------------*/
+    function repositionFrog() {
+        var time = window.setInterval(reposition, 3000);
+            
+        function reposition() {
+            window.clearInterval(time);
+            time = null;
+                
+            if (!gameover) {    
+                $("#background").append("<div id='frog' class='animationFrog'></div>");
+            }    
+        }			
+    }	
     
 }
