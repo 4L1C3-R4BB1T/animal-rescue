@@ -1,3 +1,15 @@
+let shotSound = document.getElementById("shot");
+let meow = document.getElementById("meow");
+let bgMusic = document.getElementById("bgMusic");
+let rescueSound = document.getElementById("rescue");
+let gameoverMusic = document.getElementById("gameover");
+let collisionSound = document.getElementById("collision");
+let turnHappySound = document.getElementById("turnHappy");
+
+bgMusic.volume -= .7;
+gameoverMusic.volume -= .7;
+rescueSound.volume -= .7;
+
 function start() {
     $("#start").hide();
     
@@ -8,18 +20,6 @@ function start() {
     $("#background").append("<div id='score'></div>");
     $("#background").append("<div id='hearts'></div>");
 
-    var shotSound = document.getElementById("shot");
-    var meow = document.getElementById("meow");
-    var bgMusic = document.getElementById("bgMusic");
-    var rescueSound = document.getElementById("rescue");
-    var gameoverMusic = document.getElementById("gameover");
-    var collisionSound = document.getElementById("collision");
-    var turnHappySound = document.getElementById("turnHappy");
-
-    bgMusic.volume -= .7;
-    gameoverMusic.volume -= .7;
-    rescueSound.volume -= .7;
-
     /*--------------- loop music ---------------*/
     bgMusic.addEventListener("ended", () => { 
 		bgMusic.currentTime = 0; 
@@ -29,24 +29,24 @@ function start() {
 	bgMusic.play();
 
     /*--------------- variables ---------------*/
-    var game = {};
+    let game = {};
     
-    var canShot = true;
-    var gameover = false;
+    let canShot = true;
+    let gameover = false;
     
-    var birdVelocity = 5;
-    var frogVelocity = 3;
-    var catVelocity = 1;
-    var velocityShot = 5;
+    let birdVelocity = 5;
+    let frogVelocity = 3;
+    let catVelocity = 1;
+    let velocityShot = 5;
     
-    var score = 0;
-    var rescues = 0;
-    var losts = 0;
-    var hearts = 5;
+    let score = 0;
+    let rescues = 0;
+    let losts = 0;
+    let hearts = 1;
     
-    var KEY = { W: 87, S: 83, D: 68 }
+    let KEY = { W: 87, S: 83, D: 68 }
     
-    var positionY = parseInt(Math.random() * 334);
+    let positionY = parseInt(Math.random() * 334);
 
     game.pressed = [];
 
@@ -82,7 +82,7 @@ function start() {
     /*--------------- move player ---------------*/
     function movePlayer() {
         if (game.pressed[KEY.W]) {
-            var top = parseInt($("#player").css("top"));
+            let top = parseInt($("#player").css("top"));
             
             if (top > 25) {
                 $("#player").css("top", top - 10);
@@ -90,7 +90,7 @@ function start() {
         }
         
         if (game.pressed[KEY.S]) {
-            var top = parseInt($("#player").css("top"));
+            let top = parseInt($("#player").css("top"));
            
             if (top < 420) {	
                 $("#player").css("top", top + 10);
@@ -146,7 +146,7 @@ function start() {
 
             canShot = false;
             
-            var top = parseInt($("#player").css("top"))
+            let top = parseInt($("#player").css("top"))
             positionX = parseInt($("#player").css("left"))
             
             shotX = positionX + 70;
@@ -227,7 +227,7 @@ function start() {
 				
             collisionBirdShot(birdX, birdY);
            
-            $("#shot").css("left", 950);
+            $("#shot").css("left", 940);
                 
 			setTimeout(repositionBird, 1500);
         
@@ -244,7 +244,7 @@ function start() {
         
             collisionFrogShot(frogX, frogY);
             
-            $("#shot").css("left", 950);
+            $("#shot").css("left", 940);
             
             setTimeout(repositionFrog, 1500);
 
@@ -397,7 +397,7 @@ function start() {
 
     /*--------------- reposition bird ---------------*/
     function repositionBird() {        
-        if (!gameover) {  
+        if (!gameover && hearts > 0) {  
             positionY = parseInt(Math.random() * 300) + 30;
         
             $("#background").append("<div id='bird' class='animationBird'></div>");
@@ -408,14 +408,14 @@ function start() {
 
     /*--------------- reposition frog ---------------*/
     function repositionFrog() {
-        if (!gameover) {    
+        if (!gameover && hearts > 0) {    
             $("#background").append("<div id='frog' class='animationFrog'></div>");
         }    
     }	
 
     /*--------------- reposition cat ---------------*/
     function repositionCat() {
-        if (!gameover) {
+        if (!gameover && hearts > 0) {
             cat = parseInt(Math.random()*4) + 1;
 
             $("#background").append("<div id='cat' class='animationCat'></div>");	
@@ -433,7 +433,43 @@ function start() {
     function showHearts() {
 		$("#hearts").css("background-image", `url(assets/img/hearts/${hearts}.png)`);
         if (hearts == 0) { 
-            // gameOver();
+            gameOver();
         }
     } 
+
+    /*--------------- gameover ---------------*/
+    function gameOver() {
+        gameOver = true;
+        
+        bgMusic.pause();
+		
+		gameoverMusic.addEventListener("ended", () => { 
+			gameoverMusic.currentTime = 0; 
+            gameoverMusic.play(); 
+		}, false);
+		
+		gameoverMusic.play();
+		
+        window.clearInterval(game.timer);
+        game.timer = null;
+        
+        $("#player").remove();
+        $("#bird").remove();
+        $("#frog").remove();
+        $("#cat").remove();
+        
+		$('#background').css("background-image", "url(assets/img/bg-inverted.png"); 
+		
+        $("#background").append("<div id='gameover'></div>");
+        
+        $("#gameover").html("<h1>Game Over</h1><p>Sua pontuação foi: " + score + "</p>" 
+            + "<div id='restart' onClick=restartGame()><h3>Jogar Novamente</h3></div>");
+    } 
 }
+
+function restartGame() {
+	gameoverMusic.pause();
+	$("#gameover").remove();
+	$('#background').css("background-image", "url(assets/img/bg.png"); 
+	start();
+} 
