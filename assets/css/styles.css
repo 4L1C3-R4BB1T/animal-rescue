@@ -1,18 +1,31 @@
+:root {
+    --primary: #A300E5;
+    --secondary: #4E076B;
+}
+
 @font-face {
 	font-family: junebug;
 	src: url(../font/JUNEBUG.TTF);
 }
 
 body {
-    background-color: rgb(255, 191, 255);
+    background: url(../img/bg-page.png);
+    background-size: cover;
+}
+
+#page {
+    height: 97.8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #container {
-    width: 950px;
+    width: 958px;
 	height: auto;
-	position: relative;
 	margin: auto;
-	margin-top: 3em;
+    position: relative;
 }
 
 #background {
@@ -21,8 +34,8 @@ body {
     display: flex;
 	align-items: center;
 	justify-content: center; 
-	border: #FFF 3px solid;
-    background-image: url(../img/bg.png);
+	border: #FFF 4px solid;
+    background-image: url(../img/background/bg.png);
 }
 
 #start {
@@ -32,7 +45,7 @@ body {
     font-size: 17px;
     text-align: justify;
 	font-family: sans-serif;
-    border: #A300E5 2px solid;
+    border: var(--primary) 2px solid;
 	border-radius: 10px;
 	box-shadow: 0 0 15px black;
     background-color: #FFF;
@@ -42,7 +55,7 @@ h1 {
     font-family: junebug;
 	font-size: 40px;
     text-align: center;
-	color: #A300E5;
+	color: var(--primary);
 }
 
 #start .info {
@@ -50,18 +63,20 @@ h1 {
 }
 
 #start .info strong {
-    color: red;
+    color: var(--primary);
 }
 
 #start .start-game {
+    width: 350px;
+    margin: auto;
 	font-family: junebug;
-	text-align: center;
-	color: #A300E5;
+    text-align: center;
+    color: var(--primary);
     cursor: pointer;
 }
 
 #start .start-game:hover {
-	color: #4E076B;
+	color: var(--secondary);
 }
 
 #player {
@@ -154,7 +169,7 @@ h1 {
     width: 350px;
 	padding: 10px;
 	text-align: center;	
-	border: #A300E5 2px solid;
+	border: var(--primary) 2px solid;
 	border-radius: 10px;
 	box-shadow: 0 0 15px black;
     background-color: #FFF;
@@ -168,13 +183,35 @@ h1 {
 #gameover h3 {
 	font-size: 20px;
     font-family: junebug;
-	color: #A300E5;
+	color: var(--primary);
 }
 
 #restart h3 {
+    width: 270px;
+    margin: auto;
+    margin-top: 30px;
     cursor: pointer;
 }
 
 #restart h3:hover {
-	color: #4E076B;
+	color: var(--secondary);
+}
+
+#footer {
+    width: 958px;
+    height: 25px;
+    margin: auto;
+    margin-top: -15px;
+    text-align: end;
+    font-size: 17px;
+    font-family: sans-serif;
+}
+
+#footer a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+#footer a:hover {
+    color: var(--secondary);
 }

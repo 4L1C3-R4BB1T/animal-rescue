@@ -81,10 +81,11 @@ function checkCollision() {
 
     // check collision between player and cat
     if (collisionPlayerCat.length > 0) { 
-        rescueSound.play();
-       
+        score += 10;
         rescues++;
-       
+
+        rescueSound.play();
+        
         $("#cat").remove();
 
         setTimeout(repositionCat, 3000);
@@ -107,8 +108,6 @@ function checkCollision() {
 
 /*--------------- collision bird ---------------*/
 function collisionBird(birdX, birdY) {
-    collisionSound.play();
-
     $("#background").append("<div id='collisionOne' class='animationBirdCollision'></div>");
     $("#collisionOne").css("background-image", "url(assets/img/bird/collision.png)");
   
@@ -137,8 +136,6 @@ function collisionBirdShot(birdX, birdY) {
 
 /*--------------- collision frog ---------------*/
 function collisionFrog(frogX, frogY) {
-    collisionSound.play();
-
     $("#background").append("<div id='collisionTwo' class='animationFrogCollision'></div>");
     $("#collisionTwo").css("background-image", "url(assets/img/frog/collision.png)");
     
@@ -180,6 +177,8 @@ function collisionCat(catX, catY) {
 
 /*--------------- collision player ---------------*/
 function collisionPlayer(playerX, playerY) {
+    collisionSound.play();
+    
     $("#player").remove();
 
     $("#background").append("<div id='collisionFour' class='animationPlayerHit'></div>");

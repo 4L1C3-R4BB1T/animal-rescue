@@ -27,7 +27,7 @@ let rescues = 0;
 let losts = 0;
 let hearts = 5;
 
-let KEY = { W: 87, S: 83, D: 68 }
+const KEY = { W: 87, S: 83, D: 68 }
 
 // random value to bird Y position 
 let birdY = parseInt(Math.random() * 300) + 30;
