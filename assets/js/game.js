@@ -7,8 +7,8 @@ function start() {
     $("#background").append("<div id='cat' class='animationCat'></div>");
     $("#background").append("<div id='score'></div>");
     $("#background").append("<div id='hearts'></div>");
-
-    /*--------------- music loop ---------------*/
+    
+    // music loop
     bgMusic.addEventListener("ended", () => { 
 	    bgMusic.currentTime = 0; 
         bgMusic.play(); 
@@ -16,7 +16,7 @@ function start() {
 	
     bgMusic.play();
 
-    /*--------------- checks if the user pressed any key ---------------*/
+    // checks if the user pressed any key
     $(document).keydown((e) => {
         game.pressed[e.which] = true;
     });
@@ -25,20 +25,21 @@ function start() {
         game.pressed[e.which] = false;
     });
    
-    /*--------------- game loop ---------------*/
-    game.timer = setInterval(loop, 30);
-
-    function loop() {
-        moveBackground();
-        movePlayer();
-        moveBird();
-        moveFrog();
-        moveCat();
-        checkCollision();
-        showScore();
-        showHearts();
-    } 
+    // game loop
+    game.timer = setInterval(loop, 30);   
 }
+
+/*--------------- loop ---------------*/
+function loop() {
+    moveBackground();
+    movePlayer();
+    moveBird();
+    moveFrog();
+    moveCat();
+    checkCollision();
+    showScore();
+    showHearts();
+} 
 
 /*--------------- score ---------------*/
 function showScore() {
@@ -72,7 +73,7 @@ function gameOver() {
     $("#frog").remove();
     $("#cat").remove();
     
-    $('#background').css("background-image", "url(assets/img/background/bg-inverted.png"); 
+    $("#background").css("background-image", "url(assets/img/background/bg-inverted.png"); 
     
     $("#background").append(`<div id='gameover'><h1>Game Over</h1>
         <p>Sua pontuação foi: ${score}</p><div id='restart' onClick=restartGame()>
@@ -88,7 +89,7 @@ function restartGame() {
 	
     $("#gameover").remove();
 	
-    $('#background').css("background-image", "url(assets/img/background/bg.png");
+    $("#background").css("background-image", "url(assets/img/background/bg.png");
     $("#background").css("background-position", 0); 
     
     resetVariables();
