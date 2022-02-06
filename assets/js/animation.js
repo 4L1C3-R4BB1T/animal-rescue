@@ -71,8 +71,8 @@ function shot() {
 
         canShot = false;
             
-        let playerY = parseInt($("#player").css("top"))
-        let playerX = parseInt($("#player").css("left"))
+        let playerY = parseInt($("#player").css("top"));
+        let playerX = parseInt($("#player").css("left"));
             
         let shotY = playerY + 42;
         let shotX = playerX + 70;

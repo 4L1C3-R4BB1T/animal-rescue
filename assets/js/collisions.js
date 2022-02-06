@@ -167,6 +167,7 @@ function collisionCat(catX, catY) {
     meow.play();
 
     $("#background").append("<div id='collisionThree' class='animationCatHit'></div>");
+   
     $("#collisionThree").css("top", catY);
     $("#collisionThree").css("left", catX);
     
@@ -182,6 +183,7 @@ function collisionPlayer(playerX, playerY) {
     $("#player").remove();
 
     $("#background").append("<div id='collisionFour' class='animationPlayerHit'></div>");
+   
     $("#collisionFour").css("top", playerY);
     $("#collisionFour").css("left", playerX);
     
@@ -190,6 +192,7 @@ function collisionPlayer(playerX, playerY) {
 
         if (hearts > 0) {
             $("#background").append("<div id='player' class='animationPlayer'></div>");
+          
             $("#player").css("top", playerY);
             $("#player").css("left", playerX);
         }
@@ -202,6 +205,7 @@ function repositionBird() {
         birdY = parseInt(Math.random() * 300) + 30;
     
         $("#background").append("<div id='bird' class='animationBird'></div>");
+       
         $("#bird").css("left", 850);
         $("#bird").css("top", birdY);
     }
