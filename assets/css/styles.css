@@ -13,6 +13,36 @@ body {
     background-size: cover;
 }
 
+/*preload images*/
+body::after {
+    width: 0; 
+    height: 0; 
+    position: absolute; 
+    overflow: hidden; 
+    z-index: -1; 
+    content: url(../img/player/myyra.png)
+        url(../img/player/hit.png) 
+        url(../img/bird/bird.png) 
+        url(../img/bird/hit.png) 
+        url(../img/bird/collision.png) 
+        url(../img/cats/1.png) 
+        url(../img/cats/2.png) 
+        url(../img/cats/3.png) 
+        url(../img/cats/4.png) 
+        url(../img/cats/hit.png)
+        url(../img/frog/frog.png)
+        url(../img/frog/hit.png)
+        url(../img/frog/collision.png)
+        url(../img/hearts/0.png)
+        url(../img/hearts/1.png)
+        url(../img/hearts/2.png)
+        url(../img/hearts/3.png)
+        url(../img/hearts/4.png)
+        url(../img/hearts/5.png)
+        url(../img/heart-shot.png)
+        url(../img/background/bg-inverted.png);
+}
+
 #page {
     height: 97.8vh;
     display: flex;
