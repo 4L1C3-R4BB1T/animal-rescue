@@ -10,7 +10,7 @@ function start() {
     
     // music loop
     bgMusic.addEventListener("ended", () => { 
-	    bgMusic.currentTime = 0; 
+        bgMusic.currentTime = 0; 
         bgMusic.play(); 
     }, false);
 	

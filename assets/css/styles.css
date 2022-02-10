@@ -4,8 +4,8 @@
 }
 
 @font-face {
-	font-family: junebug;
-	src: url(../font/JUNEBUG.TTF);
+    font-family: junebug;
+    src: url(../font/JUNEBUG.TTF);
 }
 
 body {
@@ -53,40 +53,40 @@ body::after {
 
 #container {
     width: 958px;
-	height: auto;
-	margin: auto;
+    height: auto;
+    margin: auto;
     position: relative;
 }
 
 #background {
     width: 950px;
-	height: 630px;
+    height: 630px;
     display: flex;
-	align-items: center;
-	justify-content: center; 
-	border: #FFF 4px solid;
+    align-items: center;
+    justify-content: center; 
+    border: #FFF 4px solid;
     background-image: url(../img/background/bg.png);
 }
 
 #start {
     width: 500px;
-	height: 375px;
-	padding: 20px;
+    height: 375px;
+    padding: 20px;
     font-size: 17px;
     text-align: justify;
     line-height: 1.3;
-	font-family: sans-serif;
+    font-family: sans-serif;
     border: var(--primary) 2px solid;
-	border-radius: 10px;
-	box-shadow: 0 0 15px black;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
     background-color: #FFF;
 }
 
 h1 {
     font-family: junebug;
-	font-size: 40px;
+    font-size: 40px;
     text-align: center;
-	color: var(--primary);
+    color: var(--primary);
 }
 
 #start .info {
@@ -100,109 +100,109 @@ h1 {
 #start .start-game {
     width: 350px;
     margin: auto;
-	font-family: junebug;
+    font-family: junebug;
     text-align: center;
     color: var(--primary);
     cursor: pointer;
 }
 
 #start .start-game:hover {
-	color: var(--secondary);
+    color: var(--secondary);
 }
 
 #player {
     height: 150px;
-	width: 91.4px;
-	top: 179px;
+    width: 91.4px;
+    top: 179px;
     left: 100px;
     position: absolute;
 }
 
 #bird {
-	height: 49px;
+    height: 49px;
     width: 73.7px;
-	top: 253px;
+    top: 253px;
     left: 875px;
     position: absolute;
 }
 
 #frog {
-	height: 40px;
+    height: 40px;
     width: 46px;
-	top: 477px;
-	left: 905px;
+    top: 477px;
+    left: 905px;
     position: absolute;
 }
 
 #cat {
     height: 60px;
     width: 70px;
-	top: 460px;    
-	left: 10px;
+    top: 460px;    
+    left: 10px;
     position: absolute;
 }
 
 #shot {
     height: 23px;
     width: 25px;
-	position: absolute;
+    position: absolute;
 }
 
 #collisionOne {
-	height: 49px;
+    height: 49px;
     width: 73.7px;
-	position: absolute;
+    position: absolute;
 }
 
 #collisionTwo {
-	height: 37px;
+    height: 37px;
     width: 44px;
-	position: absolute;	
+    position: absolute;	
 }
 
 #collisionThree {
-	height: 60px;
+    height: 60px;
     width: 70px;
-	position: absolute;
+    position: absolute;
 }
 
 #collisionFour {
-	height: 150px;
+    height: 150px;
     width: 91px;
     position: absolute;
 }
 
 #score {
-	height: 50px;
+    height: 50px;
     width: 550px;
-	top: 590px;
+    top: 590px;
     left: 5px;
     position: absolute;
 }
 
 #score h2 {
     font-family: junebug;
-	font-size: 18px;
-	margin-left: 15px;
-	color: #FFF;
+    font-size: 18px;
+    margin-left: 15px;
+    color: #FFF;
 }
 
 #hearts {
-	height: 53px;
+    height: 53px;
     width: 202px;
-	top: 12px;	
+    top: 12px;	
     left: 740px;
-	position: absolute;
+    position: absolute;
 }
 
 #gameover {
     height: 200px;
     width: 350px;
-	padding: 10px;
-	text-align: center;	
-	border: var(--primary) 2px solid;
-	border-radius: 10px;
-	box-shadow: 0 0 15px black;
+    padding: 10px;
+    text-align: center;	
+    border: var(--primary) 2px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
     background-color: #FFF;
 }
 
@@ -212,9 +212,9 @@ h1 {
 }
 
 #gameover h3 {
-	font-size: 20px;
+    font-size: 20px;
     font-family: junebug;
-	color: var(--primary);
+    color: var(--primary);
 }
 
 #restart h3 {
@@ -225,7 +225,7 @@ h1 {
 }
 
 #restart h3:hover {
-	color: var(--secondary);
+    color: var(--secondary);
 }
 
 #footer {
