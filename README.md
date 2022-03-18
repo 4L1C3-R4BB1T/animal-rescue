@@ -3,6 +3,14 @@
 Jogo em html, css e javascript desenvolvido com base no projeto **Construindo o seu primeiro jogo de naves** da [DIO](https://www.dio.me "Site da DIO").  
 Utiliza-se jQuery para realizar a manipulação do DOM e a extensão jQuery Collision para detectar colisões entre dois elementos.
 
+---
+
+### 🎬 Créditos
+🎨 Todos os desenhos foram feitos por mim.  
+😄 Meu irmão pediu para ressaltar que a Myyra é uma personagem criada por ele e que eu apenas a peguei emprestada. 
+
+---
+
 ## 🐱 Resgate Animal
 
 Myyra é uma garota com um grande coração e que está sempre ajudando os outros. Hoje não foi diferente. Os animais da floresta acordaram com um grande mau humor.  
